@@ -16,7 +16,7 @@ public class Usuario {
     }
 
     public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno,
-                   String matricula, String correo, String password, int idRol, String estado) {
+                   String matricula, String correo, String contrasena, int idRol, String estado) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
