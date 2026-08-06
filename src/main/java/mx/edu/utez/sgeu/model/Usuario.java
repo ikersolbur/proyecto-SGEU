@@ -8,27 +8,23 @@ public class Usuario {
     private String apellidoMaterno;
     private String matricula;
     private String correo;
-    private String password;
-    private String estado;
+    private String contrasena;
     private int idRol;
+    private String estado;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombre, String apellidoPaterno,
-                   String apellidoMaterno, String matricula,
-                   String correo, String password,
-                   String estado, int idRol) {
-
-        this.idUsuario = idUsuario;
+    public Usuario(String nombre, String apellidoPaterno, String apellidoMaterno,
+                   String matricula, String correo, String password, int idRol, String estado) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;
         this.matricula = matricula;
         this.correo = correo;
-        this.password = password;
-        this.estado = estado;
+        this.contrasena = contrasena;
         this.idRol = idRol;
+        this.estado = estado;
     }
 
     public int getIdUsuario() {
@@ -79,20 +75,12 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public int getIdRol() {
@@ -101,5 +89,13 @@ public class Usuario {
 
     public void setIdRol(int idRol) {
         this.idRol = idRol;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 }
