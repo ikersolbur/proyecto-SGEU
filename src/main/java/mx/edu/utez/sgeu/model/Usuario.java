@@ -4,19 +4,31 @@ public class Usuario {
 
     private int idUsuario;
     private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+    private String matricula;
     private String correo;
     private String password;
-    private String rol;
+    private String estado;
+    private int idRol;
 
     public Usuario() {
     }
 
-    public Usuario(int idUsuario, String nombre, String correo, String password, String rol) {
+    public Usuario(int idUsuario, String nombre, String apellidoPaterno,
+                   String apellidoMaterno, String matricula,
+                   String correo, String password,
+                   String estado, int idRol) {
+
         this.idUsuario = idUsuario;
         this.nombre = nombre;
+        this.apellidoPaterno = apellidoPaterno;
+        this.apellidoMaterno = apellidoMaterno;
+        this.matricula = matricula;
         this.correo = correo;
         this.password = password;
-        this.rol = rol;
+        this.estado = estado;
+        this.idRol = idRol;
     }
 
     public int getIdUsuario() {
@@ -35,6 +47,30 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+
     public String getCorreo() {
         return correo;
     }
@@ -51,11 +87,19 @@ public class Usuario {
         this.password = password;
     }
 
-    public String getRol() {
-        return rol;
+    public String getEstado() {
+        return estado;
     }
 
-    public void setRol(String rol) {
-        this.rol = rol;
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    public int getIdRol() {
+        return idRol;
+    }
+
+    public void setIdRol(int idRol) {
+        this.idRol = idRol;
     }
 }

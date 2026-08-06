@@ -26,23 +26,33 @@ public class LoginServlet extends HttpServlet {
         String correo = request.getParameter("correo");
         String contrasena = request.getParameter("password");
 
-        System.out.println("Correo recibido: " + correo);
-        System.out.println("Contraseña recibida: " + contrasena);
-
         Usuario usuario = usuarioDAO.login(correo, contrasena);
 
         if (usuario != null) {
 
-            System.out.println("Usuario encontrado");
-
             HttpSession sesion = request.getSession();
             sesion.setAttribute("usuario", usuario);
 
-            response.sendRedirect("inicio.jsp");
+            switch (usuario.getIdRol()) {
+
+                case 1:
+                    response.sendRedirect("usuario.jsp");
+                    break;
+
+                case 2:
+                    response.sendRedirect("gestor.jsp");
+                    break;
+
+                case 3:
+                    response.sendRedirect("admin.jsp");
+                    break;
+
+                default:
+                    response.sendRedirect("login.jsp");
+                    break;
+            }
 
         } else {
-
-            System.out.println("Usuario no encontrado");
 
             request.setAttribute("error", "Correo o contraseña incorrectos");
 

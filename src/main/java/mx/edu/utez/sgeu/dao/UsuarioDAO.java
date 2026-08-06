@@ -31,9 +31,13 @@ public class UsuarioDAO {
 
                 usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
                 usuario.setNombre(rs.getString("NOMBRE"));
+                usuario.setApellidoPaterno(rs.getString("APELLIDO_PATERNO"));
+                usuario.setApellidoMaterno(rs.getString("APELLIDO_MATERNO"));
+                usuario.setMatricula(rs.getString("MATRICULA"));
                 usuario.setCorreo(rs.getString("CORREO"));
                 usuario.setPassword(rs.getString("CONTRASENA"));
-                usuario.setRol(String.valueOf(rs.getInt("ID_ROL")));
+                usuario.setEstado(rs.getString("ESTADO"));
+                usuario.setIdRol(rs.getInt("ID_ROL"));
 
             }
 
@@ -43,4 +47,5 @@ public class UsuarioDAO {
 
         return usuario;
     }
+
 }

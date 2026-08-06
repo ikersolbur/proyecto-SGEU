@@ -1,0 +1,204 @@
+/* ======== ESTILOS GENERALES ======== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#F7F9FA;
+    min-height:100vh;
+}
+
+/* ======== LOGO ======== */
+
+.logo-container{
+    position:absolute;
+    top:25px;
+    left:35px;
+}
+
+.logo-container img{
+    width:120px;
+}
+
+/* ======== CONTENEDOR ======== */
+
+.login-container{
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ======== TARJETA ======== */
+
+.card{
+
+    width:430px;
+
+    background:#E8ECEF;
+
+    border:1px solid #A8B5BB;
+
+    border-radius:4px;
+
+    padding:25px;
+
+    box-shadow:0px 6px 15px rgba(0,0,0,.08);
+
+}
+
+/* ======== TITULO ======== */
+
+.card h2{
+
+    text-align:center;
+
+    margin-bottom:30px;
+
+    color:#173F3A;
+
+}
+
+/* ======== INPUTS ======== */
+
+label{
+
+    display:block;
+
+    margin-bottom:6px;
+
+    font-size:13px;
+
+    font-weight:bold;
+
+}
+
+input{
+
+    width:100%;
+
+    padding:10px;
+
+    border:1px solid #7DD8C3;
+
+    border-radius:3px;
+
+    outline:none;
+
+    margin-bottom:18px;
+
+    transition:.25s;
+
+}
+
+input:focus{
+
+    border-color:#00FAC4;
+
+}
+
+/* ======== LINK ======== */
+
+.link-text{
+
+    display:block;
+
+    text-align:right;
+
+    text-decoration:none;
+
+    color:#00C8A2;
+
+    font-size:12px;
+
+    margin-top:-8px;
+
+    margin-bottom:20px;
+
+}
+
+.link-text:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ======== BOTÓN ======== */
+
+.btn{
+
+    width:100%;
+
+    padding:12px;
+
+    background:#00FAC4;
+
+    border:none;
+
+    border-radius:3px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+    background:#00D9AA;
+
+}
+
+/* ======== FOOTER ======== */
+
+.footer-text{
+
+    margin-top:20px;
+
+    font-size:13px;
+
+}
+
+.footer-text a{
+
+    color:#00C8A2;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+}
+
+.footer-text a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ======== ERROR ======== */
+
+.error{
+
+    background:#FFDADA;
+
+    color:#A30000;
+
+    border:1px solid #FF8F8F;
+
+    padding:10px;
+
+    border-radius:4px;
+
+    margin-bottom:18px;
+
+    text-align:center;
+
+}
