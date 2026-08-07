@@ -1,3 +1,4 @@
+<%@ page import="mx.edu.utez.sgeu.model.Lugar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!DOCTYPE html>
@@ -96,7 +97,15 @@
 
                 <select name="lugar" required>
 
-                    <option value="1">Lugar 1</option>
+                    <% for(Lugar lugar : lugares){ %>
+
+                    <option value="<%= lugar.getIdLugar() %>">
+
+                        <%= lugar.getNombre() %>
+
+                    </option>
+
+                    <% } %>
 
                 </select>
 
