@@ -1,23 +1,24 @@
 package mx.edu.utez.sgeu.servlet;
-import mx.edu.utez.sgeu.model.Lugar;
-import mx.edu.utez.sgeu.model.TipoEvento;
 
-import java.util.List;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import mx.edu.utez.sgeu.dao.EventoDAO;
 import mx.edu.utez.sgeu.dao.LugarDAO;
 import mx.edu.utez.sgeu.dao.TipoEventoDAO;
 
 import mx.edu.utez.sgeu.model.Evento;
+import mx.edu.utez.sgeu.model.Lugar;
+import mx.edu.utez.sgeu.model.TipoEvento;
 import mx.edu.utez.sgeu.model.Usuario;
-
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.*;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @WebServlet("/evento")
 public class EventoServlet extends HttpServlet {
@@ -39,6 +40,13 @@ public class EventoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws ServletException, IOException {
+
+        Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
+
+        if (usuario == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
 
         String accion = request.getParameter("accion");
 
@@ -69,10 +77,16 @@ public class EventoServlet extends HttpServlet {
 
         Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
 
+        if (usuario == null) {
+            response.sendRedirect(request.getContextPath() + "/login.jsp");
+            return;
+        }
+
         Evento evento = new Evento();
 
         evento.setNombre(request.getParameter("nombre"));
         evento.setDescripcion(request.getParameter("descripcion"));
+
         evento.setFecha(Date.valueOf(request.getParameter("fecha")));
 
         evento.setHoraInicio(
@@ -81,24 +95,47 @@ public class EventoServlet extends HttpServlet {
         evento.setHoraFin(
                 Timestamp.valueOf(request.getParameter("horaFin").replace("T", " ") + ":00"));
 
-        evento.setCupoMaximo(Integer.parseInt(request.getParameter("cupo")));
+        evento.setCupoMaximo(
+                Integer.parseInt(request.getParameter("cupo")));
+
         evento.setEstado("PROGRAMADO");
-        evento.setIdLugar(Integer.parseInt(request.getParameter("lugar")));
-        evento.setIdTipoEvento(Integer.parseInt(request.getParameter("tipo")));
-        evento.setIdUsuario(usuario.getIdUsuario());
-        evento.setImagenEvento(request.getParameter("imagen"));
+
+        evento.setIdLugar(
+                Integer.parseInt(request.getParameter("lugar")));
+
+        evento.setIdTipoEvento(
+                Integer.parseInt(request.getParameter("tipo")));
+
+        evento.setIdUsuario(
+                usuario.getIdUsuario());
+
+        evento.setImagenEvento(
+                request.getParameter("imagen"));
+
         evento.setFechaLimiteInscripcion(
                 Date.valueOf(request.getParameter("fechaLimite")));
 
-        if (eventoDAO.registrarEvento(evento)) {
+        boolean registrado = eventoDAO.registrarEvento(evento);
+
+        if (registrado) {
 
             response.sendRedirect(request.getContextPath() + "/evento");
 
         } else {
 
-            response.sendRedirect(request.getContextPath() + "/evento?accion=crear");
+            request.setAttribute("error", "No se pudo registrar el evento.");
+
+            List<Lugar> lugares = lugarDAO.obtenerLugares();
+            List<TipoEvento> tipos = tipoEventoDAO.obtenerTipos();
+
+            request.setAttribute("lugares", lugares);
+            request.setAttribute("tipos", tipos);
+
+            request.getRequestDispatcher("/admin/crear-evento.jsp")
+                    .forward(request, response);
 
         }
+
     }
 
 }
