@@ -47,17 +47,15 @@ public class LoginServlet extends HttpServlet {
 
 
                 case 1:
-                    response.sendRedirect("usuario.jsp");
+                    response.sendRedirect("usuario/usuario.jsp");
                     break;
-
 
                 case 2:
-                    response.sendRedirect("gestor.jsp");
+                    response.sendRedirect("gestor/gestor.jsp");
                     break;
 
-
                 case 3:
-                    response.sendRedirect("admin.jsp");
+                    response.sendRedirect("evento");
                     break;
 
 
