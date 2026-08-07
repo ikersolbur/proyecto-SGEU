@@ -133,29 +133,61 @@
                 if (listaEventos != null && !listaEventos.isEmpty()) {
 
                     for (Evento evento : listaEventos) {
+
+                        String imagen = evento.getImagenEvento();
+
+                        if (imagen == null || imagen.trim().isEmpty()) {
+                            imagen = "default-evento.jpg";
+                        }
             %>
 
             <div class="card">
 
-                <img src="../img/<%= evento.getImagenEvento() %>" alt="Evento">
+                <img src="../img/<%= imagen %>" alt="Evento">
 
                 <div class="info">
 
                     <h3><%= evento.getNombre() %></h3>
+
+                    <p><%= evento.getDescripcion() %></p>
 
                     <div class="dato">
                         📅 <%= evento.getFecha() %>
                     </div>
 
                     <div class="dato">
-                        👥 Cupo: <%= evento.getCupoMaximo() %>
+                        👥 Cupo máximo: <%= evento.getCupoMaximo() %>
                     </div>
 
-                    <button class="btn-detalles">
+                    <div class="dato">
+                        📌 Estado: <%= evento.getEstado() %>
+                    </div>
 
-                        Ver detalles
+                    <div class="acciones">
 
-                    </button>
+                        <a class="btn-detalles"
+                           href="<%= request.getContextPath() %>/evento?accion=detalle&id=<%= evento.getIdEvento() %>">
+
+                            Ver detalles
+
+                        </a>
+
+                        <a class="btn-editar"
+                           href="<%= request.getContextPath() %>/evento?accion=editar&id=<%= evento.getIdEvento() %>">
+
+                            Editar
+
+                        </a>
+
+                        <a class="btn-eliminar"
+                           onclick="return confirm('¿Eliminar este evento?')"
+                           href="<%= request.getContextPath() %>/evento?accion=eliminar&id=<%= evento.getIdEvento() %>">
+
+                            Eliminar
+
+                        </a>
+
+                    </div>
 
                 </div>
 
@@ -174,7 +206,6 @@
             %>
 
         </section>
-
         <!-- ================= PAGINACION ================= -->
 
         <div class="pagination">
