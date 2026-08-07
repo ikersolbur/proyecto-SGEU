@@ -1,5 +1,12 @@
-<%@ page import="mx.edu.utez.sgeu.model.Lugar" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.List" %>
+<%@ page import="mx.edu.utez.sgeu.model.Lugar" %>
+<%@ page import="mx.edu.utez.sgeu.model.TipoEvento" %>
+
+<%
+    List<Lugar> lugares = (List<Lugar>) request.getAttribute("lugares");
+    List<TipoEvento> tipos = (List<TipoEvento>) request.getAttribute("tipos");
+%>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -20,9 +27,9 @@
 
     <main class="content">
 
-        <h1>Crear evento</h1>
+        <h1>Crear Evento</h1>
 
-        <form action="../evento" method="post">
+        <form action="<%= request.getContextPath() %>/evento" method="post">
 
             <div class="grupo">
 
@@ -97,7 +104,12 @@
 
                 <select name="lugar" required>
 
-                    <% for(Lugar lugar : lugares){ %>
+                    <option value="">Seleccione un lugar</option>
+
+                    <%
+                        if (lugares != null) {
+                            for (Lugar lugar : lugares) {
+                    %>
 
                     <option value="<%= lugar.getIdLugar() %>">
 
@@ -105,7 +117,10 @@
 
                     </option>
 
-                    <% } %>
+                    <%
+                            }
+                        }
+                    %>
 
                 </select>
 
@@ -117,7 +132,23 @@
 
                 <select name="tipo" required>
 
-                    <option value="1">Conferencia</option>
+                    <option value="">Seleccione un tipo</option>
+
+                    <%
+                        if (tipos != null) {
+                            for (TipoEvento tipo : tipos) {
+                    %>
+
+                    <option value="<%= tipo.getIdTipoEvento() %>">
+
+                        <%= tipo.getNombre() %>
+
+                    </option>
+
+                    <%
+                            }
+                        }
+                    %>
 
                 </select>
 
@@ -149,11 +180,11 @@
 
                 <button type="submit">
 
-                    Guardar evento
+                    Guardar Evento
 
                 </button>
 
-                <a href="admin.jsp">
+                <a href="<%= request.getContextPath() %>/evento">
 
                     Cancelar
 

@@ -57,9 +57,9 @@
                     <span>Mis eventos</span>
                 </a>
 
-                <a href="../admin/crear-evento.jsp">
-                    <i class="fa-solid fa-circle-plus"></i>
-                    <span>Crear evento</span>
+                <a href="<%= request.getContextPath() %>/evento?accion=crear" class="btn">
+                    <i class="fa-solid fa-plus"></i>
+                    Crear evento
                 </a>
 
                 <a href="#">
